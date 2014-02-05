@@ -1,0 +1,1 @@
+%w(svg png html text).each { |lib| require "identicon/#{lib}" }
