@@ -2,6 +2,7 @@ $LOAD_PATH.unshift File.expand_path(File.dirname(__FILE__) + '/lib')
 
 require 'identicon/all'
 require 'rack'
+require 'new_relic/agent/instrumentation/rack'
 
 class App
   CONTENT_TYPES = {
@@ -23,6 +24,9 @@ class App
     
     serve Identicon.const_get(type || :SVG).new(icon).render(opts), (type || :SVG).to_s.downcase
   end
+  
+  # Do the include after the call method is defined:
+  include ::NewRelic::Agent::Instrumentation::Rack
 
   private
   
