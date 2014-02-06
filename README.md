@@ -48,6 +48,12 @@ Add this line to your application's Gemfile:
     icon.to_png(options)
     icon.to_html(options)
     icon.to_text(options)
+    
+    ⬜⬜⬜⬜⬜
+    ⬛⬛⬛⬛⬛
+    ⬛⬜⬛⬜⬛
+    ⬛⬛⬛⬛⬛
+    ⬜⬛⬜⬛⬜
 
 or use the Renderer:
 
