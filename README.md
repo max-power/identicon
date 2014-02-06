@@ -1,3 +1,10 @@
+![Example2](http://id-con.herokuapp.com/MaMa.png?width=120)
+![Example3](http://id-con.herokuapp.com/Rupert.png?width=120)
+![Example4](http://id-con.herokuapp.com/Gina.png?width=120)
+![Example5](http://id-con.herokuapp.com/Matz.png?width=120)
+![Example6](http://id-con.herokuapp.com/Jane.png?width=120)
+![Example1](http://id-con.herokuapp.com/Sepp.png?width=120)
+
 # Identicon
 
 Built upon Ruby Matrix. Includes serveral renderers.
@@ -7,24 +14,6 @@ Built upon Ruby Matrix. Includes serveral renderers.
 Add this line to your application's Gemfile:
 
     gem 'identicon', github: 'max-power/identicon'
-    
-## Examples
-
-### SVG
-![Example2](http://id-con.herokuapp.com/MaMa.svg)
-![Example3](http://id-con.herokuapp.com/Rupert.svg)
-![Example4](http://id-con.herokuapp.com/Gina.svg)
-![Example5](http://id-con.herokuapp.com/Matz.svg)
-![Example6](http://id-con.herokuapp.com/Jane.svg)
-![Example1](http://id-con.herokuapp.com/Sepp.svg)
-
-### PNG
-![Example2](http://id-con.herokuapp.com/MaMa.png?width=120)
-![Example3](http://id-con.herokuapp.com/Rupert.png?width=120)
-![Example4](http://id-con.herokuapp.com/Gina.png?width=120)
-![Example5](http://id-con.herokuapp.com/Matz.png?width=120)
-![Example6](http://id-con.herokuapp.com/Jane.png?width=120)
-![Example1](http://id-con.herokuapp.com/Sepp.png?width=120)
 
 ## Usage
 
