@@ -5,42 +5,46 @@ require 'rack'
 require 'new_relic/agent/instrumentation/rack'
 
 class App
-  CONTENT_TYPES = {
-    svg: 'image/svg+xml; charset=utf-8',
-    png: 'image/png',
-    html: 'text/html; charset=utf-8',
-    text: 'text/plain; charset=utf-8'
+  Mapping = {
+    svg:  [Identicon::SVG,  'image/svg+xml; charset=utf-8'],
+    png:  [Identicon::PNG,  'image/png'],
+    html: [Identicon::HTML, 'text/html; charset=utf-8'],
+    text: [Identicon::Text, 'text/plain; charset=utf-8']
   }
+  Mapping.default = Mapping[:svg]
   
-  def initialize
-    @headers = {}
-  end
-
   def call(env)
-    opts = extract_options(env["QUERY_STRING"])
     path = env["PATH_INFO"][1..-1].to_s.rpartition('.')
-    type = renderer(path.last)
-    icon = Identicon.new(path.send(type ? :first : :join), rows: opts[:rows] || 5, cols: opts[:cols] || 5)
-    
-    serve Identicon.const_get(type || :SVG).new(icon).render(opts), (type || :SVG).to_s.downcase
+    type = path.last.downcase.to_sym
+    data = Mapping.key?(type) ? path.first : path.join
+    opts = extract_options(env["QUERY_STRING"])
+    rows = opts.delete(:rows) || 5
+    cols = opts.delete(:cols) || 5
+
+    serve Identicon.new(data, rows: rows, cols: cols), opts, *Mapping[type]
   end
   
   # Do the include after the call method is defined:
   include ::NewRelic::Agent::Instrumentation::Rack
-
+  
   private
   
-  def renderer(ext)
-    Identicon.constants.detect { |s| s == ext.capitalize.to_sym || s == ext.upcase.to_sym }
-  end
-
-  def extract_options(query)
-    Rack::Utils.parse_nested_query(query).each_with_object({}) {|(k,v),opts| opts[k.to_sym] = v }
+  def serve(icon, options, renderer, content_type)
+    content = renderer.new(options).render(icon)
+    headers = {
+      "Content-Length" => content.bytesize.to_s,
+      "Content-Type"   => content_type,
+      "ETag"           => "W/#{icon.digest}",
+      "Cache-Control"  => "max-age=3153600"
+    }
+    [200, headers, [content]]
   end
   
-  def serve(output, type)
-    @headers['Content-Length'] = output.bytesize.to_s
-    @headers['Content-Type']   = CONTENT_TYPES[type.to_sym]
-    [200, @headers, [output]]
+  PermittedParameters = %i(width height padding invert rows cols)
+  
+  def extract_options(query)
+    Rack::Utils.parse_nested_query(query).each_with_object({}) do|(k,v),opts|
+      opts[k.to_sym] = v if PermittedParameters.include?(k.to_sym)
+    end
   end
 end
