@@ -3,33 +3,32 @@ require 'identicon/base'
 
 class Identicon
   def to_html(*args)
-    HTML.new(self).render(*args)
+    HTML.new(*args).render(self)
   end
     
   class HTML < Base
-    def render(params={})
-      @invert = params.fetch(:invert, false)
-      width   = params.fetch(:width,  240)
-      height  = params.fetch(:height, width)
-      padd    = params.fetch(:padding, 0.5).to_f
-      @cell_w  = (100 / (2 * padd + @matrix.column_size)).floor
-      @cell_h  = (100 / (2 * padd + @matrix.row_size)).floor
+    def render(icon)
+      cell_w  = (100 / (2 * @padding + icon.matrix.column_size)).floor
+      cell_h  = (100 / (2 * @padding + icon.matrix.row_size)).floor
       
-      padd_x = (padd * (width.to_f  * @cell_w / 100)).floor
-      padd_y = (padd * (height.to_f * @cell_h / 100)).floor
+      content = icon.matrix.map do |cell|
+        %Q[<td style="width:#{ cell_w }%;height:#{ cell_h }%;background:#{ icon.color((cell==1) ^ @invert) }"></td>]
+      end.to_a.map do |cells|
+        %Q[<tr>#{ cells.join }</tr>]
+      end.join
       
-      %Q[<table style="padding:#{ padd_y }px #{ padd_x }px;background:#{ color(@invert) }" width="#{ width }" height="#{ height }" cellspacing="0" cellpadding="0" border="0">#{ rows }</table>]
+      %Q[<table#{table_attrs(cell_w, cell_h, icon.color(@invert))}>#{ content }</table>]
     end
     
     private
     
-    def rows
-      @matrix.to_a.map { |row| %Q[<tr>#{ cells(row).join }</tr>] }.join
+    def table_attrs(cell_w, cell_h, color)
+      padd_x = (@padding * (@width.to_f  * cell_w / 100)).floor
+      padd_y = (@padding * (@height.to_f * cell_h / 100)).floor
+      
+      %Q[ cellspacing="0" cellpadding="0" border="0"] +
+      %Q[ width="#{ @width }" height="#{ @height }"]  +
+      %Q[ style="padding:#{ padd_y }px #{ padd_x }px;background:#{ color }"]
     end
-    
-    def cells(row)
-      row.map { |cell| %Q[<td style="width:#{ @cell_w }%;height:#{ @cell_h }%;background:#{ color((cell==1) ^ @invert) }"></td>] }
-    end
-    
   end
 end

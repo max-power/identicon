@@ -1,14 +1,13 @@
 class Identicon
   class Base
-    def initialize(icon)
-      @icon, @matrix  = icon, icon.matrix
+    def initialize(width: 240, height: width, padding: 0.5, invert: false)
+      @width   = width.to_i
+      @height  = height.to_i
+      @padding = padding.to_f
+      @invert  = !!invert
     end
     
-    def color(foreground=true)
-      foreground ? @icon.color : '#e0e0e0'
-    end
-    
-    def render(params={})
+    def render(icon)
       raise "Not Implemented!"
     end
   end
