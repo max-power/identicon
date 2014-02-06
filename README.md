@@ -1,13 +1,13 @@
-![Example2](http://id-con.herokuapp.com/MaMa.png?width=120)
-![Example3](http://id-con.herokuapp.com/Rupert.png?width=120)
-![Example4](http://id-con.herokuapp.com/Gina.png?width=120)
-![Example5](http://id-con.herokuapp.com/Matz.png?width=120)
-![Example6](http://id-con.herokuapp.com/Jane.png?width=120)
-![Example1](http://id-con.herokuapp.com/Sepp.png?width=120)
-
 # Identicon
 
 Built upon Ruby Matrix. Includes serveral renderers.
+
+![Example6](http://id-con.herokuapp.com/Jane.png?width=120)
+![Example1](http://id-con.herokuapp.com/Sepp.png?width=120)
+![Example5](http://id-con.herokuapp.com/Matz.png?width=120)
+![Example3](http://id-con.herokuapp.com/Rupert.png?width=120)
+![Example2](http://id-con.herokuapp.com/MaMa.png?width=120)
+![Example4](http://id-con.herokuapp.com/Gina.png?width=120)
 
 ## Installation
 
