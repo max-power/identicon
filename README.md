@@ -30,11 +30,11 @@ Add this line to your application's Gemfile:
 
     require 'identicon/svg'
 
-    Identicon('hi').to_svg
+    Identicon.new('hi').to_svg
     
 ### Advanced Usage
 
-    icon = Identicon.new(some_string, rows: 5, cols: 5)
+    icon = Identicon.new("some_string", rows: 5, cols: 5)
     icon.digest
     icon.binary
     icon.matrix
