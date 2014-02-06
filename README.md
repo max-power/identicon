@@ -11,12 +11,12 @@ Add this line to your application's Gemfile:
 ## Examples
 
 ### SVG
-![Example2](http://id-con.herokuapp.com/MaMa)
-![Example3](http://id-con.herokuapp.com/Rupert)
-![Example4](http://id-con.herokuapp.com/Gina)
-![Example5](http://id-con.herokuapp.com/Matz)
-![Example6](http://id-con.herokuapp.com/Jane)
-![Example1](http://id-con.herokuapp.com/Sepp)
+![Example2](http://id-con.herokuapp.com/MaMa.svg)
+![Example3](http://id-con.herokuapp.com/Rupert.svg)
+![Example4](http://id-con.herokuapp.com/Gina.svg)
+![Example5](http://id-con.herokuapp.com/Matz.svg)
+![Example6](http://id-con.herokuapp.com/Jane.svg)
+![Example1](http://id-con.herokuapp.com/Sepp.svg)
 
 ### PNG
 ![Example2](http://id-con.herokuapp.com/MaMa.png?width=120)
