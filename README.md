@@ -40,20 +40,28 @@ Add this line to your application's Gemfile:
     icon.matrix
     icon.color
     
-    
 ### Render an Identicon
+
+    require 'identicon/all'
     
     icon.to_svg(options)
     icon.to_png(options)
     icon.to_html(options)
     icon.to_text(options)
 
+or use the Renderer:
+
+    Identicon::SVG.new(icon).render(options)
+    Identicon::PNG.new(icon).render(options)
+    Identicon::HTML.new(icon).render(options)
+    Identicon::Text.new(icon).render(options)
+
 #### Render Parameters
 
-- `invert`:  Boolean - (default: false)
-- `width`:   Integer - image width in Pixels (default: 240)
-- `height`:  Integer - image height in Pixels (default: width)
-- `padding: Float(0..1) - padding as Percentage of one Block width
+- `invert`  Boolean: (default: false)
+- `width`   Integer: Image width in Pixels (default: 240)
+- `height`  Integer: Image height in Pixels (default: width)
+- `padding` Float(0..1): Padding as percentage of a block size
 
 ## Contributing
 
