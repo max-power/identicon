@@ -46,10 +46,10 @@ Add this line to your application's Gemfile:
 
 or use the Renderer:
 
-    Identicon::SVG.new(icon).render(options)
-    Identicon::PNG.new(icon).render(options)
-    Identicon::HTML.new(icon).render(options)
-    Identicon::Text.new(icon).render(options)
+    Identicon::SVG.new(options).render(icon)
+    Identicon::PNG.new(options).render(icon)
+    Identicon::HTML.new(options).render(icon)
+    Identicon::Text.new(options).render(icon)
 
 #### Render Parameters
 
