@@ -1,11 +1,5 @@
-require 'newrelic_rpm'
-require 'new_relic/rack/agent_hooks'
-require 'new_relic/rack/browser_monitoring'
-require 'new_relic/rack/error_collector'
+$LOAD_PATH.unshift File.expand_path(File.dirname(__FILE__) + '/lib')
 
-require_relative 'app'
+require 'identicon/server'
 
-use NewRelic::Rack::AgentHooks
-use NewRelic::Rack::BrowserMonitoring
-use NewRelic::Rack::ErrorCollector
-run App.new
+run Identicon::Server.new
