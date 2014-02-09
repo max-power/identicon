@@ -5,4 +5,3 @@ source 'https://rubygems.org'
 gemspec
 
 gem "thin"
-gem "newrelic_rpm"

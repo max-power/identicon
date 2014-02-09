@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = Identicon::VERSION
   spec.authors       = ["Max Power"]
   spec.email         = ["kevin.melchert@gmail.com"]
-  spec.summary       = %q{TODO: Write a short summary. Required.}
-  spec.description   = %q{TODO: Write a longer description. Optional.}
+  spec.summary       = %q{Github style Identicons.}
+  spec.description   = %q{Built upon Ruby Matrix. Includes SVG, PNG, HTML and Plain Text renderers.}
   spec.homepage      = ""
   spec.license       = "MIT"
 
